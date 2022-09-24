@@ -22,9 +22,16 @@ export const AppContextProvider = (props: Props) => {
     themeChange(false);
   }, []);
 
+//   const setAndSyncTheme = (theme: string) => {
+//     console.log("SetAndSyncTo => " + theme);
+//       document.documentElement.setAttribute("prefers-color-scheme", theme);
+//       window.prefers-color-scheme
+//     setTheme(theme);
+//   };
+
   const value = {
     theme,
-    setTheme,
+    setTheme, 
   };
 
   return <AppContext.Provider value={value} {...props} />;
