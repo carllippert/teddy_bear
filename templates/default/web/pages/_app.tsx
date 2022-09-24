@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import "@rainbow-me/rainbowkit/styles.css";
-
+import { DARK_MODE, LIGHT_MODE } from "../../../../config";
 import {
   getDefaultWallets,
   RainbowKitProvider,
@@ -42,7 +42,7 @@ function AppWithContext({ Component, pageProps }: AppProps) {
   const { theme } = useAppContext();
 
   const getTheme = () => {
-    if (theme == "light") {
+    if (theme == LIGHT_MODE) {
       return lightTheme();
     } else {
       return darkTheme();

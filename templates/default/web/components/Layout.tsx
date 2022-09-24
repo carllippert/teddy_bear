@@ -3,16 +3,17 @@ import { useEffect, useState } from "react";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAppContext } from "../context/AppContext";
+import { DARK_MODE, LIGHT_MODE } from "../../../../config";
 import Logo from "./Logo";
 
 const Layout = ({ children }: { children: any }) => {
   const { theme, setTheme } = useAppContext();
 
-  const syncTheme = () => {
-    let theme = document.documentElement.getAttribute("data-theme");
-    if (theme) {
+  const syncTheme = (theme: string) => {
+    let theme2 = document.documentElement.getAttribute("data-theme");
+    if (theme2) {
       console.log("Theme => " + theme);
-      setTheme(theme);
+     setTheme(theme);
     }
   };
 
@@ -29,10 +30,10 @@ const Layout = ({ children }: { children: any }) => {
         <div className="navbar bg-base-200">
           <Logo />
           <div className="flex-none">
-            {theme == "dark" ? (
+            {theme == DARK_MODE ? (
               <button
-                onClick={syncTheme}
-                data-set-theme="light"
+                onClick={() => syncTheme(LIGHT_MODE)}
+                data-set-theme={LIGHT_MODE}
                 className="p-2 mr-2 bg-base-100 rounded-lg"
               >
                 <svg
@@ -52,8 +53,8 @@ const Layout = ({ children }: { children: any }) => {
               </button>
             ) : (
               <button
-                onClick={syncTheme}
-                data-set-theme="dark"
+                onClick={() => syncTheme(DARK_MODE)}
+                data-set-theme={DARK_MODE}
                 className="p-2 mr-2 bg-base-100 rounded-lg"
               >
                 <svg
