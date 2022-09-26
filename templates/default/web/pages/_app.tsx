@@ -1,3 +1,4 @@
+import React from "react";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -12,6 +13,9 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { AppContextProvider, useAppContext } from "../context/AppContext";
+import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next-auth";
+import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
@@ -29,7 +33,11 @@ const wagmiClient = createClient({
   provider,
 });
 
-function MyApp(props: AppProps) {
+function MyApp(
+  props: AppProps<{
+    session: Session;
+  }>
+) {
   return (
     <AppContextProvider>
       <AppWithContext {...props} />
@@ -38,7 +46,12 @@ function MyApp(props: AppProps) {
 }
 
 //this exists solely to get access to context to sync light and dark mode themes into Rainbowkit
-function AppWithContext({ Component, pageProps }: AppProps) {
+function AppWithContext({
+  Component,
+  pageProps,
+}: AppProps<{
+  session: Session;
+}>) {
   const { theme } = useAppContext();
 
   const getTheme = () => {
@@ -51,9 +64,13 @@ function AppWithContext({ Component, pageProps }: AppProps) {
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider coolMode theme={getTheme()} chains={chains}>
-        <Component {...pageProps} />
-      </RainbowKitProvider>
+      <SessionProvider session={pageProps.session}>
+        <RainbowKitSiweNextAuthProvider>
+          <RainbowKitProvider coolMode theme={getTheme()} chains={chains}>
+            <Component {...pageProps} />
+          </RainbowKitProvider>
+        </RainbowKitSiweNextAuthProvider>
+      </SessionProvider>
     </WagmiConfig>
   );
 }
