@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "DOS";
+    src: url("../public/fonts/DOSVGA437.ttf");
+  }
