@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import "@rainbow-me/rainbowkit/styles.css";
-import { DARK_MODE, LIGHT_MODE } from "../../../../config";
+import { LIGHT_MODE, PROJECT_NAME } from "../../config";
 import {
   getDefaultWallets,
   RainbowKitProvider,
@@ -19,7 +19,7 @@ const { chains, provider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "My RainbowKit App",
+  appName: PROJECT_NAME,
   chains,
 });
 
@@ -51,7 +51,7 @@ function AppWithContext({ Component, pageProps }: AppProps) {
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider theme={getTheme()} chains={chains}>
+      <RainbowKitProvider coolMode theme={getTheme()} chains={chains}>
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>

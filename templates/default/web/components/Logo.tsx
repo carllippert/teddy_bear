@@ -1,4 +1,4 @@
-import { PROJECT_NAME } from "../../../../config";
+import { PROJECT_NAME } from "../../config";
 
 const Logo = () => {
   return (
