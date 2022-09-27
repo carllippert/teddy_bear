@@ -1,25 +1,18 @@
 import Head from "next/head";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAppContext } from "../context/AppContext";
-import { DARK_MODE, LIGHT_MODE, PROJECT_NAME } from "../../config";
+import { PROJECT_NAME } from "../../config";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
+import { Header } from "./Header";
 
 const Layout = ({ children }: { children: any }) => {
-  const { theme, setTheme } = useAppContext();
-
-  const syncTheme = () => {
-    let theme = document.documentElement.getAttribute("data-theme");
-    if (theme) {
-      setTheme(theme);
-    }
-  };
-
   return (
     <div
       data-theme
-      className="bg-cover min-h-screen min-w-screen bg-gradient-to-r from-purple-500 to-pink-500"
-      // className="min-h-full bg-[url('../public/Linear5-Grain2.png')] bg-cover bg-center"
+      // className="min-h-screen bg-gradient-to-r from-purple-500 to-pink-500"
+      // className="bg-pink-500"
+      className="min-h-full bg-[url('../public/Linear5-Grain2.png')] bg-cover bg-center"
     >
       <Head>
         <title>{PROJECT_NAME}</title>
@@ -28,57 +21,32 @@ const Layout = ({ children }: { children: any }) => {
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </Head>
 
-      <body className="">
-        <div className="navbar bg-base-200">
+      <body>
+        {/* <div className="navbar bg-base-200">
           <Logo />
-          <div className="flex-none">
-            {theme == DARK_MODE ? (
-              <button
-                onClick={syncTheme}
-                data-set-theme={LIGHT_MODE}
-                className="p-2 mr-2 bg-base-100 rounded-lg"
+          <div className="flex-none sm:hidden">
+            <button className="btn btn-square btn-ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block w-5 h-5 stroke-current"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                  />
-                </svg>
-              </button>
-            ) : (
-              <button
-                onClick={syncTheme}
-                data-set-theme={DARK_MODE}
-                className="p-2 mr-2 bg-base-100 rounded-lg"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                  />
-                </svg>
-              </button>
-            )}
-
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div className="hidden sm:flex">
+            <ThemeToggle />
             <ConnectButton />
           </div>
-        </div>
+        </div> */}
+        <Header />
 
         {children}
       </body>
