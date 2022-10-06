@@ -1,5 +1,5 @@
 {
-    "name": "create-next-app",
+    "name": "teddy-bear",
     "version": "12.3.2-canary.19",
     "keywords": [
       "react",
@@ -9,10 +9,10 @@
     "description": "Create Next.js-powered React apps with one command",
     "repository": {
       "type": "git",
-      "url": "https://github.com/vercel/next.js",
+      "url": "https://github.com/carllippert/teddy_bear",
       "directory": "packages/create-next-app"
     },
-    "author": "Next.js Team <support@vercel.com>",
+    "author": "@carllippert",
     "license": "MIT",
     "bin": {
       "create-next-app": "./dist/index.js"
