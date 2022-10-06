@@ -6,7 +6,7 @@ import clsx from "clsx";
 import Logo from "./Logo";
 import { NavLink } from "./Navlink";
 import { Button } from "./Button";
-import { ConnectButton } from '@suiet/wallet-kit';
+import { ConnectButton } from "@suiet/wallet-kit";
 
 export function Container({ className, ...props }: any) {
   return (
@@ -119,11 +119,6 @@ export function Header() {
               {/* <NavLink href="/login">Sign in</NavLink> */}
               <ConnectButton />
             </div>
-            {/* <Button href="/register" color="blue">
-              <span>
-                Get started <span className="hidden lg:inline">today</span>
-              </span>
-            </Button> */}
             <div className="-mr-1 sm:hidden">
               <MobileNavigation />
             </div>
